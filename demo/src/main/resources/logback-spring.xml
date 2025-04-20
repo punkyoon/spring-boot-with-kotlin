@@ -15,7 +15,7 @@
         <encoder class="ch.qos.logback.classic.encoder.JsonEncoder" />
     </appender>
 
-    <springProfile name="local">
+    <springProfile name="!local">
         <root level="INFO">
             <appender-ref ref="FILE_JSON"/>
         </root>
