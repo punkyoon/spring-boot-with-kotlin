@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: demo
+  devtools:
+    livereload:
+      enabled: false
+    restart:
+      enabled: false
+
+server:
+  compression:
+    enabled: true
+  shutdown: graceful
+  port: 8080
