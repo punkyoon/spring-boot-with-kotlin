@@ -58,3 +58,20 @@ dependencies {
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
 }
+
+project(":presentation") {
+    dependencies {
+        compileOnly(project(":application"))
+        compileOnly(project(":data"))
+    }
+}
+
+project(":application") {
+    dependencies {
+        compileOnly(project(":data"))
+    }
+}
+
+project(":data") {
+    dependencies {}
+}
