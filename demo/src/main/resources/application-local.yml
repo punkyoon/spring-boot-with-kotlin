@@ -17,8 +17,3 @@ logging:
   level:
     root: info
     org.springframework.web: debug
-#  structured:
-#    format:
-#      file: ecs
-#  file:
-#    name: application-log.json
