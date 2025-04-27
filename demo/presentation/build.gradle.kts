@@ -1,3 +1,7 @@
+springBoot {
+    mainClass.set("com.example.demo.DemoApplicationKt")
+}
+
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.springframework.boot:spring-boot-starter-web")

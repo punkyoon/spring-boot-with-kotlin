@@ -54,10 +54,7 @@ subprojects {
     }
 }
 
-dependencies {
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-    implementation("org.jetbrains.kotlin:kotlin-reflect")
-}
+dependencies {}
 
 project(":presentation") {
     dependencies {

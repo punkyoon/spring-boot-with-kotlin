@@ -8,6 +8,6 @@ tasks {
     }
 
     jar {
-        enabled = false
+        enabled = true
     }
 }
