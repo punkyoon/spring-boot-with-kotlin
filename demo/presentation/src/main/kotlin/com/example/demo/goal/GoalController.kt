@@ -1,5 +1,6 @@
 package com.example.demo.goal
 
+import com.example.demo.common.AuthContext
 import com.example.demo.common.PageResponse
 import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
@@ -17,18 +18,20 @@ class GoalController(
 
     @GetMapping("/goals/{goalId}")
     fun retrieveGoal(
+        authContext: AuthContext,
         @PathVariable("goalId") goalId: Long,
     ): GoalResponse {
-        return goalService.retrieveGoal(TEMP_USER_ID, goalId).toGoalResponse()
+        return goalService.retrieveGoal(authContext.userId, goalId).toGoalResponse()
     }
 
     @GetMapping("/goals/list")
     fun listGoals(
+        authContext: AuthContext,
         @RequestParam("filterCompleted", defaultValue = "true", required = false) filterCompleted: Boolean?,
         @RequestParam("page", defaultValue = "1", required = false) page: Int?,
         @RequestParam("size", defaultValue = "10", required = false) size: Int?,
     ): PageResponse<GoalResponse> {
-        val pagedGoalEntities = goalService.listGoals(TEMP_USER_ID, filterCompleted, page, size)
+        val pagedGoalEntities = goalService.listGoals(authContext.userId, filterCompleted, page, size)
 
         return PageResponse(
             items = pagedGoalEntities.content.map { it.toGoalResponse() },
@@ -41,10 +44,11 @@ class GoalController(
 
     @PostMapping("/goals")
     fun createGoal(
+        authContext: AuthContext,
         @RequestBody request: CreateGoalRequest,
     ): GoalResponse {
         val goalEntity = goalService.createNewGoal(
-            userId = TEMP_USER_ID,
+            userId = authContext.userId,
             title = request.title,
             description = request.description,
             startDate = request.startDate,
@@ -56,11 +60,12 @@ class GoalController(
 
     @PatchMapping("/goals/{goalId}")
     fun updateGoal(
+        authContext: AuthContext,
         @PathVariable("goalId") goalId: Long,
         @RequestBody request: UpdateGoalRequest,
     ): GoalResponse {
         val goalEntity = goalService.updateGoal(
-            userId = TEMP_USER_ID,
+            userId = authContext.userId,
             goalId = goalId,
             title = request.title,
             description = request.description,
@@ -73,26 +78,25 @@ class GoalController(
 
     @PostMapping("/goals/{goalId}/check")
     fun checkGoalProgress(
+        authContext: AuthContext,
         @PathVariable("goalId") goalId: Long,
     ) {
-        goalService.checkGoalProgress(TEMP_USER_ID, goalId)
+        goalService.checkGoalProgress(authContext.userId, goalId)
     }
 
     @PostMapping("/goals/{goalId}/revert")
     fun revertGoalProgress(
+        authContext: AuthContext,
         @PathVariable("goalId") goalId: Long,
     ) {
-        goalService.revertGoalProgress(TEMP_USER_ID, goalId)
+        goalService.revertGoalProgress(authContext.userId, goalId)
     }
 
     @DeleteMapping("/goals/{goalId}")
     fun removeGoal(
+        authContext: AuthContext,
         @PathVariable("goalId") goalId: Long,
     ) {
-        goalService.removeGoal(TEMP_USER_ID, goalId)
-    }
-
-    companion object {
-        private const val TEMP_USER_ID = 1L
+        goalService.removeGoal(authContext.userId, goalId)
     }
 }
