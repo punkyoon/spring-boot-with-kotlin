@@ -30,3 +30,12 @@ logging:
   level:
     root: info
     org.springframework.web: debug
+
+auth:
+  jwt:
+    issuer: com.example.demo
+    audience: com.example.demo
+    secret-key: $3cretKey12345678
+    expiration:
+      access-token: 1h
+      refresh-token: 24h
