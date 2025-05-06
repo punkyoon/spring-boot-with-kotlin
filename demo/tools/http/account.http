@@ -1,0 +1,40 @@
+### POST signUp
+POST http://localhost:8080/auth/sign-up
+Content-Type: application/json
+
+{
+  "loginUsername": "test",
+  "loginPassword": "test",
+  "name": "test-user",
+  "email": "test@test.com"
+}
+
+### POST signIn
+POST http://localhost:8080/auth/sign-in
+Content-Type: application/json
+
+{
+  "username": "test",
+  "password": "test"
+}
+
+### POST refresh
+POST http://localhost:8080/auth/refresh
+Content-Type: application/json
+
+{
+  "refreshToken": "**"
+}
+
+### PUT updatePassword
+PUT http://localhost:8080/auth/accounts/password
+Authorization: Bearer **
+Content-Type: application/json
+
+{
+  "newPassword": "****"
+}
+
+### DELETE deleteAccount
+DELETE http://localhost:8080/auth/accounts
+Authorization: Bearer **
