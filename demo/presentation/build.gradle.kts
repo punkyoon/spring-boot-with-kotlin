@@ -1,3 +1,7 @@
+plugins {
+    id("com.google.cloud.tools.jib") version "3.4.5"
+}
+
 springBoot {
     mainClass.set("com.example.demo.DemoApplicationKt")
 }
@@ -19,4 +23,37 @@ dependencies {
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
 
     testImplementation("org.springframework.security:spring-security-test")
+}
+
+jib {
+    from {
+        image = "amazoncorretto:21-alpine3.21"
+
+        platforms {
+            platform {
+                architecture = "arm64"
+                os = "linux"
+            }
+        }
+    }
+
+    to {
+        image = "demo"
+        tags = mutableSetOf("1.0", "latest")
+    }
+
+    container {
+        mainClass = "com.example.demo.DemoApplicationKt"
+        ports = listOf("8080")
+
+        jvmFlags = listOf(
+            "-Dspring.profiles.active=prod",
+            "-XX:+UseContainerSupport",
+            "-Dserver.port=8080",
+            "-Dfile.encoding=UTF-8"
+        )
+
+        environment = mapOf("SPRING_OUTPUT_ANSI_ENABLED" to "ALWAYS")
+        creationTime = "USE_CURRENT_TIMESTAMP"
+    }
 }
