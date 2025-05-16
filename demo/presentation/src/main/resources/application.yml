@@ -2,6 +2,36 @@ spring:
   application:
     name: demo
 
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ${DATASOURCE_URL}
+    username: ${DATASOURCE_USERNAME}
+    password: ${DATASOURCE_PASSWORD}
+
+    hikari:
+      connection-timeout: 30_000 # 30s
+      idle-timeout: 600_000 # 10m
+      max-lifetime: 1_800_000 # 30m
+      maximum-pool-size: 10
+      minimum-idle: 10
+      pool-name: demo-hikari-cp
+
+  flyway:
+    enabled: false
+
+  jpa:
+    show-sql: true
+    open-in-view: false
+    properties:
+      hibernate:
+        create_empty_composites:
+          enabled: true
+        jdbc:
+          batch_size: 100
+          order_inserts: true
+    hibernate:
+      ddl-auto: validate
+
 server:
   compression:
     enabled: true

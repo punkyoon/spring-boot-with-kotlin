@@ -7,6 +7,19 @@ spring:
     restart:
       enabled: false
 
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:4306/demo?autoReconnect=true&characterEncoding=UTF-8&useUnicode=true
+    username: root
+    password: demo-admin
+
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+    baseline-version: 0
+    locations:
+      - classpath:flyway/migration
+
 server:
   compression:
     enabled: true

@@ -1,0 +1,16 @@
+services:
+  demo.mysql.local:
+    container_name: 'demo.mysql.local'
+    image: mysql:8.0
+    restart: unless-stopped
+    ports:
+      - '4306:3306'
+    volumes:
+      - demo-mysql-data:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: demo
+      MYSQL_ROOT_PASSWORD: demo-admin
+    command: '--character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci'
+
+volumes:
+  demo-mysql-data:
