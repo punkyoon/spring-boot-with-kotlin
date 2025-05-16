@@ -1,5 +1,6 @@
 package com.example.demo.user
 
+import com.example.demo.common.AuthContext
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -19,12 +20,9 @@ class UserController(
 
     @PutMapping("/users")
     fun updateUserName(
+        authContext: AuthContext,
         @RequestBody request: UpdateUserNameRequest,
     ): UserResponse {
-        return userService.updateUserName(TEMP_USER_ID, request.newName).toUserResponse()
-    }
-
-    companion object {
-        private const val TEMP_USER_ID = 1L
+        return userService.updateUserName(authContext.userId, request.newName).toUserResponse()
     }
 }

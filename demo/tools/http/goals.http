@@ -1,0 +1,43 @@
+### GET retrieveGoal
+GET http://localhost:8080/goals/1
+Authorization: Bearer **
+
+### GET listGoals
+GET http://localhost:8080/goals/list?page=0&size=50&filterCompleted=
+Authorization: Bearer **
+
+### POST createGoal
+POST http://localhost:8080/goals
+Authorization: Bearer **
+Content-Type: application/json
+
+{
+  "title": "a",
+  "description": "a",
+  "startDate": "2025-05-15",
+  "endDate": "2025-07-01"
+}
+
+### PATCH updateGoal
+PATCH http://localhost:8080/goals/1
+Authorization: Bearer **
+Content-Type: application/json
+
+{
+  "title": "b",
+  "description": "b",
+  "startDate": "2025-05-15",
+  "endDate": null
+}
+
+### POST checkGoalProgress
+POST http://localhost:8080/goals/1/check
+Authorization: Bearer **
+
+### POST revertGoalProgress
+POST http://localhost:8080/goals/1/revert
+Authorization: Bearer **
+
+### DELETE removeGoal
+DELETE http://localhost:8080/goals/2
+Authorization: Bearer **

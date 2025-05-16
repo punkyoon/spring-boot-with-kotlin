@@ -12,6 +12,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 
     runtimeOnly("com.mysql:mysql-connector-j")
+    runtimeOnly("com.auth0:java-jwt:4.5.0")
 
     developmentOnly("org.springframework.boot:spring-boot-devtools")
 

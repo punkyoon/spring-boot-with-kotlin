@@ -1,0 +1,12 @@
+### GET retrieveUser
+GET http://localhost:8080/users?email=test@test.com
+Authorization: Bearer **
+
+### PUT updateUserName
+PUT http://localhost:8080/users
+Authorization: Bearer **
+Content-Type: application/json
+
+{
+  "newName": "test-user"
+}
