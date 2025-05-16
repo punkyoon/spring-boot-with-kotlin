@@ -19,5 +19,4 @@ dependencies {
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
 
     testImplementation("org.springframework.security:spring-security-test")
-    testImplementation(kotlin("test"))
 }

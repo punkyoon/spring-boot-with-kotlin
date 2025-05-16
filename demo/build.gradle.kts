@@ -26,9 +26,13 @@ subprojects {
         implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
         implementation("org.jetbrains.kotlin:kotlin-reflect")
 
+        testImplementation(kotlin("test"))
+
         testImplementation("org.springframework.boot:spring-boot-starter-test")
         testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
         testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+
+        testImplementation("io.mockk:mockk:1.14.2")
     }
 
     configurations {
@@ -60,12 +64,17 @@ project(":presentation") {
     dependencies {
         compileOnly(project(":application"))
         compileOnly(project(":data"))
+
+        testImplementation(project(":application"))
+        testImplementation(project(":data"))
     }
 }
 
 project(":application") {
     dependencies {
         compileOnly(project(":data"))
+
+        testImplementation(project(":data"))
     }
 }
 
