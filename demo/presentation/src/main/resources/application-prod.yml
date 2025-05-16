@@ -1,0 +1,36 @@
+spring:
+  application:
+    name: demo
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://demo.mysql.local:3306/demo?autoReconnect=true&characterEncoding=UTF-8&useUnicode=true
+    username: root
+    password: demo-admin
+
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+    baseline-version: 0
+    locations:
+      - classpath:flyway/migration
+
+server:
+  compression:
+    enabled: true
+  shutdown: graceful
+  port: 8080
+
+logging:
+  level:
+    root: info
+    org.springframework.web: debug
+
+auth:
+  jwt:
+    issuer: com.example.demo
+    audience: com.example.demo
+    secret-key: $3cretKey12345678
+    expiration:
+      access-token: 1h
+      refresh-token: 24h

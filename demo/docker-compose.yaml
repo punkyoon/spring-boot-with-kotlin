@@ -11,6 +11,19 @@ services:
       MYSQL_DATABASE: demo
       MYSQL_ROOT_PASSWORD: demo-admin
     command: '--character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci'
+    networks:
+      - demo-network
+  demo.local:
+    container_name: 'demo.local'
+    image: demo:latest
+    ports:
+      - '8080:8080'
+    networks:
+      - demo-network
+    depends_on:
+      - demo.mysql.local
 
 volumes:
   demo-mysql-data:
+networks:
+  demo-network:

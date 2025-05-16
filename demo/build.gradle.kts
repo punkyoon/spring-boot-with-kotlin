@@ -62,8 +62,8 @@ dependencies {}
 
 project(":presentation") {
     dependencies {
-        compileOnly(project(":application"))
-        compileOnly(project(":data"))
+        implementation(project(":application"))
+        implementation(project(":data"))
 
         testImplementation(project(":application"))
         testImplementation(project(":data"))
@@ -72,7 +72,7 @@ project(":presentation") {
 
 project(":application") {
     dependencies {
-        compileOnly(project(":data"))
+        implementation(project(":data"))
 
         testImplementation(project(":data"))
     }

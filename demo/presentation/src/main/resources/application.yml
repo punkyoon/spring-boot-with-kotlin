@@ -41,3 +41,12 @@ server:
 logging:
   level:
     root: info
+
+auth:
+  jwt:
+    issuer: com.example.demo
+    audience: com.example.demo
+    secret-key: ${AUTH_JWT_SECRETKEY}
+    expiration:
+      access-token: 1h
+      refresh-token: 24h
