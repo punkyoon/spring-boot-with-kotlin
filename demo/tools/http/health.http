@@ -1,0 +1,2 @@
+### GET checkHealth
+GET http://localhost:8080/health

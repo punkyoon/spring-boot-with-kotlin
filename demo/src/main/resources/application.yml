@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: demo
+
+server:
+  compression:
+    enabled: true
+  shutdown: graceful
+  port: 8080
+
+logging:
+  level:
+    root: info
